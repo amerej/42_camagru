@@ -2,7 +2,7 @@
 
 if (isset($_GET['username']) && isset($_GET['email']) && isset($_GET['password'])) {
 
-	require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/UserModel.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/UserModel.php';
 
     // Check password robustness and if username or/and email already exists
     ////////////////////////////////////////////////////////////////////////
@@ -21,7 +21,6 @@ if (isset($_GET['username']) && isset($_GET['email']) && isset($_GET['password']
     
 	// Find user by username
 	$result = UserModel::getUserByUsername($username);
-    require 'models/get_user_by_username.php';
     if ($result)
         $isUsernameExists = TRUE;
     

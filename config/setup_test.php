@@ -1,18 +1,22 @@
 <?php
 
-require_once '../classes/DB.class.php';
+if (!isset($_SESSION))
+session_start();
 
-// Connect to DB
-$db = DB::getInstance();
+if (isset($_SESSION['user']['id'])) {
+	unset($_SESSION['user']['login']);
+	session_destroy();
+}
+
+require_once '../classes/DB.class.php';
 
 // Construct DB
 try {
-	// $command = "DROP DATABASE IF EXISTS mydb";
-	// $db->exec($command);
-	// $command = "CREATE DATABASE mydb";
-	// $db->exec($command);
-	// $command = "use mydb";
-	// $db->exec($command);
+	
+	$db = DB::getInstance();
+	$db->exec('drop database if exists mydb');
+	$db->exec('create database mydb');
+	$db->exec('use mydb');
 
 	$command = "CREATE TABLE IF NOT EXISTS `mydb`.`Users` (
 	`idUser` INT NOT NULL AUTO_INCREMENT,

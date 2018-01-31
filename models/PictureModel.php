@@ -2,13 +2,15 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/DB.class.php';
 
-class PictureModel extends DB {
+class PictureModel {
 	
 	public static function getPictures() {
 		try {
-			$statement = parent::getInstance()->prepare
+			$db = DB::getInstance();
+			$db->exec('use mydb');
+			$statement = $db->prepare
 			("	SELECT p.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username 
-				FROM Pictures p
+				FROM mydb.Pictures p
 				INNER JOIN Users u
 				ON p.idUser = u.idUser
 				ORDER BY p.dateCreation DESC");
@@ -16,7 +18,7 @@ class PictureModel extends DB {
 			$statement->execute();
 			
 			return $statement->fetchAll();
-		} 
+		}
 		catch(PDOException $e) {
 			echo $e->getMessage(); 
 		}
@@ -24,7 +26,9 @@ class PictureModel extends DB {
 
 	public static function getPicture($id) {
 		try {
-			$statement = parent::getInstance()->prepare
+			$db = DB::getInstance();
+			$db->exec('use mydb');
+			$statement = $db->prepare
 			("	SELECT p.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username 
             	FROM Pictures p
             	INNER JOIN Users u
@@ -42,7 +46,9 @@ class PictureModel extends DB {
 
 	public static function getPicturesByUser($id) {
 		try {
-			$statement = parent::getInstance()->prepare
+			$db = DB::getInstance();
+			$db->exec('use mydb');
+			$statement = $db->prepare
 			("	SELECT p.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username 
 				FROM Pictures p
 				INNER JOIN Users u
@@ -61,7 +67,9 @@ class PictureModel extends DB {
 
 	public static function postPicture($id_user, $filename) {
 		try {
-			$statement = parent::getInstance()->prepare
+			$db = DB::getInstance();
+			$db->exec('use mydb');
+			$statement = $db->prepare
 			("	INSERT INTO `Pictures` (`idPicture`, `idUser`, `dateCreation`, `filename`) 
 				VALUES (NULL, :idUser, NOW(), :filename)");
 

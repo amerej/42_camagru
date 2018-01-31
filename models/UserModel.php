@@ -2,11 +2,13 @@
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/DB.class.php';
 
-class UserModel extends DB {
+class UserModel {
 
 	public static function getUserByUsername($username) {
 		try {
-			$statement = parent::getInstance()->prepare
+			$db = DB::getInstance();
+			$db->exec('use mydb');
+			$statement = $db->prepare
 			("	SELECT * 
 				FROM `Users` 
 				WHERE `username` = :username");
@@ -22,7 +24,9 @@ class UserModel extends DB {
 
 	public static function getUserByEmail($email) {
 		try {
-			$statement = parent::getInstance()->prepare
+			$db = DB::getInstance();
+			$db->exec('use mydb');
+			$statement = $db->prepare
 			("	SELECT * 
 				FROM `Users` 
 				WHERE `email` = :email");
@@ -38,7 +42,9 @@ class UserModel extends DB {
 
 	public static function postUser($username, $email, $password) {
 		try {
-			$statement = parent::getInstance()->prepare
+			$db = DB::getInstance();
+			$db->exec('use mydb');
+			$statement = $db->prepare
 			("	INSERT INTO `Users` (`idUser`, `username`, `email`, `password`) 
 				VALUES (NULL, :username, :email, :password)");
 			
