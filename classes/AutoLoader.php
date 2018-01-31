@@ -12,7 +12,6 @@ class AutoLoader {
             include 'classes/' . $class . '.class.php';
         });
     }
-
 }
 
 ?>

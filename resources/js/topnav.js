@@ -1,28 +1,25 @@
-/* 
-**  Toggle between adding and removing the "responsive" class to topnav when the user clicks on the icon
-*/
-function addResponsiveClass() {
-    var x = document.getElementById("topnav");
-    var y = document.getElementById("nav-section");
-    if (x.className === "topnav")
-        x.className += " responsive";
-    else
-        x.className = "topnav";
-    if (y.className === "nav-section")
-        y.className += " responsive";
-    else
-        y.className = "nav-section";
-}
+document.addEventListener('DOMContentLoaded', function () {
 
-/* 
-**  Close responsive menu when clickink on anchor link
-*/
-function closeOnClick() {
-    var x = document.getElementById("topnav");
-    var y = document.getElementById("nav-section");
-    
-    if (y.className === "nav-section responsive") {
-        x.className = "topnav";
-        y.className = "nav-section";
+    // Get all "navbar-burger" elements
+    var $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  
+    // Check if there are any navbar burgers
+    if ($navbarBurgers.length > 0) {
+  
+      // Add a click event on each of them
+      $navbarBurgers.forEach(function ($el) {
+        $el.addEventListener('click', function () {
+  
+          // Get the target from the "data-target" attribute
+          var target = $el.dataset.target;
+          var $target = document.getElementById(target);
+  
+          // Toggle the class on both the "navbar-burger" and the "navbar-menu"
+          $el.classList.toggle('is-active');
+          $target.classList.toggle('is-active');
+  
+        });
+      });
     }
-}
+  
+  });

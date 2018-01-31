@@ -3,11 +3,13 @@
 if (!isset($_SESSION))
     session_start();
 
-$username = $_SESSION['user']['login'];
+if (isset($_SESSION['user']['login']) && isset($_SESSION['user']['id'])) {
+    $username = $_SESSION['user']['login'];
+    $id_user = $_SESSION['user']['id'];
+}
 
-if (!isset($username))
-    exit(header('Location: index.php?error=forbidden'));
+require $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/PictureModel.php';
 
-require $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/get_pictures.php';
+$pictures = PictureModel::getPictures();
 
 ?>

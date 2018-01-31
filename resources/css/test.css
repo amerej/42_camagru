@@ -1,0 +1,131 @@
+/* ---------------------------------------------------- */
+/* BASIC SETUP */
+/* ---------------------------------------------------- */
+
+.input, .textarea {
+    border: none;
+    border-bottom: 1px solid transparent;
+    border-radius: 0px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    background-color: transparent;
+    border-color: #dbdbdb;
+    color: #363636;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.input:focus, .input.is-focused, .input:active, .input.is-active, .textarea:focus, .textarea.is-focused, .textarea:active, .textarea.is-active {
+    border-color: transparent;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-bottom: 1px solid transparent;
+    border-color: #dbdbdb;
+}
+
+.button.is-white {
+    background-color: transparent;
+    border-color: transparent;
+    color: #b1adae;
+}
+
+.button.is-white:hover, .button.is-white.is-hovered {
+    background-color: transparent;
+    border-color: transparent;
+    color: #b1adae;
+}
+
+.snapTest {
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.latest {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.latest img {
+    width: 20%;
+    border: 1px solid transparent;
+    border-radius: 5px;
+}
+
+.filters {
+    overflow-x: scroll;
+    overflow-y: hidden;
+    white-space: nowrap;
+}
+
+.filters img {
+    width: 20%;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    background-color: #1abc9c;
+}
+
+.video {
+    position:relative;
+}
+
+.overlay {
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    top: 0px;
+    right: 0px;
+}
+
+/* Take snap button */
+.takeSnap {
+    text-align: center;
+    padding: 10px;
+}
+
+/* Hide Canvas by default */
+
+#canvas {
+    display: none;
+}
+
+.gallery {
+    padding: 40px 10px;
+}
+
+.media-content {
+    padding-top: 0.38rem;
+}
+
+.card-content {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-left: 0.5rem;
+}
+
+.card {
+    background-color: text-replace;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #4a4a4a;
+    max-width: 100%;
+    position: relative;
+}
+
+section.picture {
+    padding-top: 40px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.input, .textarea {
+   resize: none;
+}
+
+.box {
+    border-radius: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    padding: 0rem;
+}

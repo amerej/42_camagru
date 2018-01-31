@@ -3,10 +3,10 @@
 if (!isset($_SESSION))
     session_start();
 
-$idUser = $_SESSION['user']['id'];
+$id_user = $_SESSION['user']['id'];
 $username = $_SESSION['user']['login'];
 
-if (!(isset($username) && isset($idUser)))
+if (!(isset($username) && isset($id_user)))
     exit(header('Location: index.php?error=forbidden'));
 
 if (empty($_FILES['file']))
@@ -29,6 +29,9 @@ if (!is_dir("../" . $filepath)) {
 
 move_uploaded_file($_FILES['file']['tmp_name'], "../" . $filename);
 
-require $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/post_pictures.php';
+// Save new image
+require $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/PictureModel.php';
+
+PictureModel::postPicture($id_user, $filename);
 
 ?>

@@ -6,5 +6,5 @@ if (isset($_SESSION['user']['id'])) {
 	unset($_SESSION['user']['login']);
     session_destroy();
 }
-exit(header('Location: index.php?logout=success'));
+exit(header('Location: gallery.php'));
 ?>
