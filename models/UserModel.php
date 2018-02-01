@@ -6,9 +6,7 @@ class UserModel {
 
 	public static function getUserByUsername($username) {
 		try {
-			$db = DB::getInstance();
-			$db->exec('use mydb');
-			$statement = $db->prepare
+			$statement = DB::getInstance()->prepare
 			("	SELECT * 
 				FROM `Users` 
 				WHERE `username` = :username");
@@ -16,17 +14,14 @@ class UserModel {
 			$statement->bindParam(':username', $username);
 			$statement->execute();
 			return $statement->fetch();
-		}
-		catch(PDOException $e) {
+
+		} catch(PDOException $e) {
 			echo $e->getMessage(); 
-		}
-	}
+		}}
 
 	public static function getUserByEmail($email) {
 		try {
-			$db = DB::getInstance();
-			$db->exec('use mydb');
-			$statement = $db->prepare
+			$statement = DB::getInstance()->prepare
 			("	SELECT * 
 				FROM `Users` 
 				WHERE `email` = :email");
@@ -34,17 +29,14 @@ class UserModel {
 			$statement->bindParam(':email', $email);
 			$statement->execute();
 			return $statement->fetch();
-		}
-		catch(PDOException $e) {
+
+		} catch(PDOException $e) {
 			echo $e->getMessage(); 
-		}
-	}
+		}}
 
 	public static function postUser($username, $email, $password) {
 		try {
-			$db = DB::getInstance();
-			$db->exec('use mydb');
-			$statement = $db->prepare
+			$statement = DB::getInstance()->prepare
 			("	INSERT INTO `Users` (`idUser`, `username`, `email`, `password`) 
 				VALUES (NULL, :username, :email, :password)");
 			
@@ -52,9 +44,8 @@ class UserModel {
     		$statement->bindParam(':email', $email);
     		$statement->bindParam(':password', $password);
 			$statement->execute();
-		}
-		catch(PDOException $e) {
+
+		} catch(PDOException $e) {
 			echo $e->getMessage(); 
-		}
-	}
+		}}
 }

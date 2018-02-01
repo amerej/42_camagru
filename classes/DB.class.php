@@ -1,6 +1,6 @@
 <?php
 
-require $_SERVER['DOCUMENT_ROOT'] . '/camagru/config/database_test.php';
+require $_SERVER['DOCUMENT_ROOT'] . '/camagru/config/database.php';
 
 class DB {
 	private $PDOInstance = NULL;
@@ -8,7 +8,7 @@ class DB {
 
 	private function __construct() {
 		try {
-			$this->PDOInstance = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);		
+			$this->PDOInstance = new PDO(DB_DSN, DB_USER, DB_PASS, DB_OPTIONS);
 		} catch(PDOException $e) {
 			echo "Connection failed: " . $e->getMessage();
 		}
@@ -17,11 +17,12 @@ class DB {
 	public static function getInstance() {
 		if (is_null(self::$instance)) {
 			self::$instance = new DB();
-		}		
+		}
 		return self::$instance;
 	}
 
 	public function prepare($statement) {
+		$this->PDOInstance->exec('USE '.DB_NAME);
 		return $this->PDOInstance->prepare($statement);
 	}
 
