@@ -47,7 +47,7 @@ try {
 	`idComment` INT NOT NULL AUTO_INCREMENT,
 	`idUser` INT NULL,
 	`idPicture` INT NULL,
-	`content` VARCHAR(45) NULL,
+	`content` VARCHAR(255) NULL,
 	`dateCreation` DATETIME NULL,
 	PRIMARY KEY (`idComment`))
 	ENGINE = MyISAM";

@@ -14,11 +14,10 @@ class UserModel {
 			$statement->bindParam(':username', $username);
 			$statement->execute();
 			return $statement->fetch();
-		}
-		catch(PDOException $e) {
+
+		} catch(PDOException $e) {
 			echo $e->getMessage(); 
-		}
-	}
+		}}
 
 	public static function getUserByEmail($email) {
 		try {
@@ -30,11 +29,10 @@ class UserModel {
 			$statement->bindParam(':email', $email);
 			$statement->execute();
 			return $statement->fetch();
-		}
-		catch(PDOException $e) {
+
+		} catch(PDOException $e) {
 			echo $e->getMessage(); 
-		}
-	}
+		}}
 
 	public static function postUser($username, $email, $password) {
 		try {
@@ -46,9 +44,8 @@ class UserModel {
     		$statement->bindParam(':email', $email);
     		$statement->bindParam(':password', $password);
 			$statement->execute();
-		}
-		catch(PDOException $e) {
+
+		} catch(PDOException $e) {
 			echo $e->getMessage(); 
-		}
-	}
+		}}
 }

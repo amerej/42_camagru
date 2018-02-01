@@ -4,7 +4,6 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/config/database.php';
 
 class DB {
 	private $PDOInstance = NULL;
-	private $PDOTmp = NULL;
 	private static $instance = NULL;
 
 	private function __construct() {
@@ -23,6 +22,7 @@ class DB {
 	}
 
 	public function prepare($statement) {
+		$this->PDOInstance->exec('USE '.DB_NAME);
 		return $this->PDOInstance->prepare($statement);
 	}
 
