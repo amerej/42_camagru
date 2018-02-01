@@ -26,9 +26,7 @@ class PictureModel {
 
 	public static function getPicture($id) {
 		try {
-			$db = DB::getInstance();
-			$db->exec('use mydb');
-			$statement = $db->prepare
+			$statement = DB::getInstance()->prepare
 			("	SELECT p.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username 
             	FROM Pictures p
             	INNER JOIN Users u
@@ -46,9 +44,7 @@ class PictureModel {
 
 	public static function getPicturesByUser($id) {
 		try {
-			$db = DB::getInstance();
-			$db->exec('use mydb');
-			$statement = $db->prepare
+			$statement = DB::getInstance()->prepare
 			("	SELECT p.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username 
 				FROM Pictures p
 				INNER JOIN Users u
@@ -67,9 +63,7 @@ class PictureModel {
 
 	public static function postPicture($id_user, $filename) {
 		try {
-			$db = DB::getInstance();
-			$db->exec('use mydb');
-			$statement = $db->prepare
+			$statement = DB::getInstance()->prepare
 			("	INSERT INTO `Pictures` (`idPicture`, `idUser`, `dateCreation`, `filename`) 
 				VALUES (NULL, :idUser, NOW(), :filename)");
 

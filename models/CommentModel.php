@@ -6,7 +6,7 @@ class CommentModel extends DB {
 
 	public static function getComments($id_picture) {
 		try {
-			$statement = parent::getInstance()->prepare
+			$statement = DB::getInstance()->prepare
 			("	SELECT c.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username 
             	FROM Comments c
             	INNER JOIN Users u
@@ -25,7 +25,7 @@ class CommentModel extends DB {
 
 	public static function postComment($id_user_comment, $id_picture, $content) {
 		try {
-			$statement = parent::getInstance()->prepare
+			$statement = DB::getInstance()->prepare
 			("	INSERT INTO `Comments`(`idComment`, `idUser`, `idPicture`, `content`, `dateCreation`) 
 				VALUES (NULL, :idUser, :idPicture, :content, NOW())
 			");

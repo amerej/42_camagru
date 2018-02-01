@@ -6,9 +6,7 @@ class UserModel {
 
 	public static function getUserByUsername($username) {
 		try {
-			$db = DB::getInstance();
-			$db->exec('use mydb');
-			$statement = $db->prepare
+			$statement = DB::getInstance()->prepare
 			("	SELECT * 
 				FROM `Users` 
 				WHERE `username` = :username");
@@ -24,9 +22,7 @@ class UserModel {
 
 	public static function getUserByEmail($email) {
 		try {
-			$db = DB::getInstance();
-			$db->exec('use mydb');
-			$statement = $db->prepare
+			$statement = DB::getInstance()->prepare
 			("	SELECT * 
 				FROM `Users` 
 				WHERE `email` = :email");
@@ -42,9 +38,7 @@ class UserModel {
 
 	public static function postUser($username, $email, $password) {
 		try {
-			$db = DB::getInstance();
-			$db->exec('use mydb');
-			$statement = $db->prepare
+			$statement = DB::getInstance()->prepare
 			("	INSERT INTO `Users` (`idUser`, `username`, `email`, `password`) 
 				VALUES (NULL, :username, :email, :password)");
 			
