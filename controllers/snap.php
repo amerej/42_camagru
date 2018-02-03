@@ -4,7 +4,7 @@ if (!isset($_SESSION))
     session_start();
 
 $id_user = $_SESSION['user']['id'];
-$username = $_SESSION['user']['login'];
+$username = $_SESSION['user']['username'];
 
 if (!(isset($username) && isset($id_user)))
 	exit(header('Location: index.php?error=forbidden'));

@@ -22,6 +22,9 @@ try {
 	`username` VARCHAR(45) NULL,
 	`email` VARCHAR(255) NULL,
 	`password` VARCHAR(255) NULL,
+	`token` VARCHAR(255) NULL,
+	`isAuthentified` TINYINT DEFAULT 0,
+	`isNotificationsEnabled` TINYINT DEFAULT 1,
 	PRIMARY KEY (`idUser`))
 	ENGINE = MyISAM";
 	$db->exec($command);

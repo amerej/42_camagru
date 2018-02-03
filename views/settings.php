@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8" lang="en">
-		<title>Camagru - Login</title>
+		<title>Camagru - Settings</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
 		<link rel="stylesheet" type="text/css"href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
@@ -18,10 +18,10 @@
 						<form class="column is-half" method="POST" action="signin.php">
 							<div class="field">
 								<p class="control has-icons-left">
-									<input class="input" type="text" name="username" value="<?php echo $username; ?>" placeholder="Enter username" autocomplete="on" required>
+									<input class="input" type="text" name="username" value="<?php echo $username; ?>" placeholder="Enter new username" autocomplete="on" required>
 									<span class="icon is-small is-left"><i class="fas fa-user"></i></span>
 								</p>
-								<p class="help">Already username ? <a href="login.php">login</a></p>
+								<p class="help">4-15 letters and optional digits</p>
 							</div>
 							<div class="field">
 								<p class="control has-icons-left">
@@ -32,10 +32,17 @@
 							</div>
 							<div class="field">
 								<p class="control has-icons-left">
-									<input class="input" type="password" name="password" placeholder="Enter password" autocomplete="on" required>
+									<input class="input" type="password" name="password" placeholder="Enter new password" autocomplete="on" required>
 									<span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
 								</p>
-								<p class="help">8 characters, numbers and letters</p>
+								<p class="help">8-12 lower/uppercase letters and digits</p>
+							</div>
+							<div class="field">
+								<p class="control has-icons-left">
+									<input class="input" type="password" name="password" placeholder="Confirm new password" autocomplete="on" required>
+									<span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
+								</p>
+								<p class="help">8-12 lower/uppercase letters and digits</p>
 							</div>
 							<div class="control field has-text-centered">
 								<p><button class="button is-white is-medium" type="submit" name="submit">Register</button></p>
