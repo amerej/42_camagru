@@ -95,10 +95,10 @@ class UserModel {
 			");
 			$statement->bindParam(':email', $email);
 			$statement->execute();
-			return $statement->fetch();
+			return $statement->fetchColumn(0);
 
 		} catch(PDOException $e) {
-			echo $e->getMessage(); 
+			echo $e->getMessage();
 		}
 	}
 

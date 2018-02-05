@@ -40,7 +40,7 @@ if (isset($_GET['email']) && isset($_GET['token'])) {
 	$email = Security::filterInput($_GET['email']);
 	$token = Security::filterInput($_GET['token']);
 	$user_token = UserModel::getUserTokenByEmail($email);
-	if ($user['token'] == $user_token) {
+	if ($token == $user_token) {
 		UserModel::updateUserIsAuthentified($email);
 		$account_validate = 'Your account is validate... Good job!';
 		unset($_SESSION['account']);
