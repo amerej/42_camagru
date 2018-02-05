@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$id_picture = $_POST['idPicture'];
 	$content = $_POST['content'];
 	CommentModel::postComment($id_user_comment, $id_picture, $content);
-	
+
 } else {
 	$id_picture = $_SESSION['id_picture'];
 	$comments = CommentModel::getComments($id_picture);
