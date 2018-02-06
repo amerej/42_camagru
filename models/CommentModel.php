@@ -10,7 +10,7 @@ class CommentModel {
 			("	SELECT c.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username FROM Comments c 
 				INNER JOIN Users u ON c.idUser = u.idUser 
 				WHERE c.idPicture = $id_picture 
-				ORDER BY c.dateCreation DES
+				ORDER BY c.dateCreation DESC
 			");
 			$statement->execute();
 			return $statement->fetchAll();

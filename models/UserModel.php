@@ -34,6 +34,21 @@ class UserModel {
 		}
 	}
 
+	public static function getNotificationsState($userId) {
+		try {
+			$statement = DB::getInstance()->prepare
+			("	SELECT u.isNotificationsEnabled FROM Users u 
+				WHERE u.idUser = :idUser
+			");
+			$statement->bindParam(':idUser', $userId);
+			$statement->execute();
+			return $statement->fetchColumn(0);
+
+		} catch(PDOException $e) {
+			echo $e->getMessage();
+		}
+	}
+
 	public static function postUser($username, $email, $password, $token) {
 		try {
 			$statement = DB::getInstance()->prepare
@@ -102,6 +117,7 @@ class UserModel {
 		}
 	}
 
+
 	public static function updateUserIsAuthentified($email) {
 		try {
 			$statement = DB::getInstance()->prepare
@@ -112,6 +128,66 @@ class UserModel {
 			$statement->bindParam(':email', $email);
 			$statement->execute();
 
+		} catch(PDOException $e) {
+			echo $e->getMessage(); 
+		}
+	}
+
+	public static function updateUsername($userId, $newUsername) {
+		try {
+			$statement = DB::getInstance()->prepare
+			("	UPDATE Users u
+				SET u.username = :username
+				WHERE u.idUser = :idUser
+			");
+			$statement->bindParam(':username', $newUsername);
+			$statement->bindParam(':idUser', $userId);
+			$statement->execute();
+		} catch(PDOException $e) {
+			echo $e->getMessage(); 
+		}
+	}
+
+	public static function updateEmail($userId, $newEmail) {
+		try {
+			$statement = DB::getInstance()->prepare
+			("	UPDATE Users u
+				SET u.email = :email
+				WHERE u.idUser = :idUser
+			");
+			$statement->bindParam(':email', $newEmail);
+			$statement->bindParam(':idUser', $userId);
+			$statement->execute();
+		} catch(PDOException $e) {
+			echo $e->getMessage(); 
+		}
+	}
+
+	public static function updatePassword($userId, $newPassword) {
+		try {
+			$statement = DB::getInstance()->prepare
+			("	UPDATE Users u
+				SET u.password = :password
+				WHERE u.idUser = :idUser
+			");
+			$statement->bindParam(':password', $newPassword);
+			$statement->bindParam(':idUser', $userId);
+			$statement->execute();
+		} catch(PDOException $e) {
+			echo $e->getMessage(); 
+		}
+	}
+
+	public static function updateNotifications($userId, $state) {
+		try {
+			$statement = DB::getInstance()->prepare
+			("	UPDATE Users u
+				SET u.isNotificationsEnabled = :state
+				WHERE u.idUser = :idUser
+			");
+			$statement->bindParam(':state', $state);
+			$statement->bindParam(':idUser', $userId);
+			$statement->execute();
 		} catch(PDOException $e) {
 			echo $e->getMessage(); 
 		}

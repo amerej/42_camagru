@@ -54,10 +54,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 		$subject = "Camagru Account Validation";
 		$message = "	<html>
 							<head>
-								<title>Nonsensical Latin</title>
+								<title>Confirmation Camagru</title>
 							</head>
 							<body>
-								<p><a href=\"http://localhost:8080/camagru/login.php?email=$email&token=$token\">Confirm Inscription</a></p>
+								<p><a href=\"http://localhost:8888/camagru/login.php?email=$email&token=$token\">Confirm Inscription</a></p>
 							</body>
 						</html>
 					";

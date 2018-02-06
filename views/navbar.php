@@ -16,9 +16,9 @@
 				<a class="navbar-item">Import Picture</a>
 				<a class="navbar-item" href="gallery.php">Gallery</a>
 				<div class="navbar-item has-dropdown is-hoverable">
-					<a class="navbar-link"><?php echo $username ?></a>
+					<a class="navbar-link" id="nav_username"><?php echo $username ?></a>
 					<div class="navbar-dropdown is-right">
-						<a class="navbar-item">Settings</a>
+						<a class="navbar-item" href="settings.php">Settings</a>
 						<hr class="navbar-divider">
 						<div class="navbar-item">
 							<a href="logout.php">Logout</a>
