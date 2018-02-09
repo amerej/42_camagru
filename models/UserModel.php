@@ -42,7 +42,7 @@ class UserModel {
 			");
 			$statement->bindParam(':idUser', $userId);
 			$statement->execute();
-			return $statement->fetchColumn(0);
+			return $statement->fetchColumn();
 
 		} catch(PDOException $e) {
 			echo $e->getMessage();

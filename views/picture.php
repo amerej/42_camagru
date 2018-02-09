@@ -17,34 +17,31 @@
 		<section class="picture">
 			<div class="container">
 				<div class="columns is-centered">
-					<div class="column is-half">
+					<div class="column is-two-thirds">
 						<div class="column">
 							<div class="card">
-								<div class="card-image">
-									<figure class="image is-4by3">
-										<img class="" src="<?php echo $picture[0]['filename']; ?>"/>
-									</figure>
-								</div>
+								<div class="card-image"><figure class="image is-4by3"><img class="" src="<?php echo $picture['filename']; ?>"/></figure></div>
 								<div class="card-content">
 									<div class="media">
-										<div class="media-content">
-											<p class="title is-5"><?php echo $picture[0]['username'] ?></p>
-											<p class="subtitle is-6"><?php echo $picture[0]['date'] ?></p>
-										</div>
+										<div class="media-content"><p><strong><?php echo $picture['username'] ?></strong> <small><?php echo $picture['date'] ?></small></p></div>
+										<div class="media-right"><?php include('like.php'); ?></div>
+										<div class="media-right"><figure class="image is-32x32"><img id="submit_like" src="resources/img/icons/heart.png" alt="Like"></figure></div>
 									</div>
 								</div>
 							</div>
 						</div>
 						<div class="column">
-							<div class="columns">
-								<div class="column is-10">
-									<textarea class="textarea" id="content" name="content" placeholder="Enter your comment here..." rows="2"></textarea>
-								</div>
-								<div class="control column has-text-centered">
-									<p><button id="submit" type="submit" class="button is-white is-medium">Send</button></p>
+							<div class="card">
+								<div class="card-content">
+									<div class="media">
+										<div class="media-content"><textarea class="textarea" id="content" name="content" placeholder="Enter your comment here..." rows="1"></textarea></div>
+										<div class="media-right"><figure class="image is-32x32"><img id="submit" src="resources/img/icons/send.png" alt="Send"></figure></div>
+									</div>
 								</div>
 							</div>
-							<?php include('views/comment.php'); ?>
+							<div class="column comments" id="comments">
+								<?php include('comment.php'); ?>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -55,35 +52,80 @@
 
 <script>
 
-	document.getElementById("submit").addEventListener("click", function() {
-		
-		var content = document.getElementById("content").value
-		var formData = new FormData()
-		var id_picture = "<?php echo $id_picture; ?>"
+window.ajaxready = true
+var offset = 2
 
-		formData.append("idPicture", <?php echo $id_picture ?>)
-		formData.append("content", content)
-		formData.append("idUserComment", <?php echo $_SESSION['user']['id'] ?>)
+document.getElementById("submit_like").addEventListener("click", function() {
 
-		var xmlhttp = new XMLHttpRequest()
-		xmlhttp.onreadystatechange = function() {
+	var likes = document.querySelector('#likes')
 
-			if (this.readyState == 4 && this.status == 200) {
-				var data = new XMLHttpRequest();
-				var content = document.querySelector('#content')
-				content.value = ""
-				data.onreadystatechange = function() {
+	var formData = new FormData()
+	formData.append("picture_id", <?php echo $picture_id ?>)
+	formData.append("user_id", <?php echo $_SESSION['user']['id'] ?>)
 
-				if (this.readyState == 4 && this.status == 200) {
-					var comments = document.querySelector('#comments')
-					comments.innerHTML = data.responseText
+	var oReq = new XMLHttpRequest();
+	oReq.onload = function(oEvent) {
+		if (oReq.status == 200) {
+			likes.innerHTML = oReq.responseText
+		}
+	}
+	oReq.open("POST", "like.php?id=<?php echo $picture_id ?>", true);
+	oReq.send(formData)
+}, false)
+
+document.getElementById("submit").addEventListener("click", function() {
+	
+	var content = document.querySelector('#content')
+	var comments = document.querySelector('#comments')
+
+	var formData = new FormData()
+	formData.append("picture_id", <?php echo $picture_id ?>)
+	formData.append("user_id", <?php echo $_SESSION['user']['id'] ?>)
+	formData.append("content", content.value)
+
+	var oReq = new XMLHttpRequest()
+	oReq.onload = function(oEvent) {
+		if (oReq.status == 200) {
+			comments.innerHTML = oReq.responseText
+			content.value = ""
+			window.ajaxready = true
+			//console.log(offset)
+			//offset++
+		}
+	}
+	console.log(offset)
+	oReq.open("POST", "comment.php?id=<?php echo $picture_id ?>&limit=" + offset, true);
+	oReq.send(formData)
+}, false)
+
+// Infinite scroll comments
+
+
+document.addEventListener("scroll", function (event) {
+	var scrollTop = document.documentElement.scrollTop
+	var windowHeight = window.innerHeight
+	var bodyHeight = document.body.clientHeight - windowHeight
+	var scrollPercentage = (scrollTop / bodyHeight)
+	var comments = document.querySelector('#comments')
+	
+	if (window.ajaxready == false) return
+
+	if(scrollPercentage > 0.9) {
+		// Load content
+		window.ajaxready = false
+		var oReq = new XMLHttpRequest()
+		oReq.onload = function(oEvent) {
+			if (oReq.status == 200) {
+				if (oReq.responseText != '') {
+					offset += 2
+					comments.innerHTML += oReq.responseText
+					window.ajaxready = true
 				}
 			}
-			data.open("GET", "views/comment.php", true)
-			data.send();
-			}
-		};
-		xmlhttp.open("POST", "controllers/comment.php", true)
-		xmlhttp.send(formData);
-	})
+		}
+		oReq.open("GET", "comment.php?id=<?php echo $picture_id ?>&offset=" + offset, true)
+		oReq.send()
+	}
+})
+
 </script>

@@ -4,13 +4,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/DB.class.php';
 
 class CommentModel {
 
-	public static function getComments($id_picture) {
+	public static function getComments($id_picture, $limit=2, $offset=0) {
 		try {
 			$statement = DB::getInstance()->prepare
 			("	SELECT c.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username FROM Comments c 
 				INNER JOIN Users u ON c.idUser = u.idUser 
-				WHERE c.idPicture = $id_picture 
+				WHERE c.idPicture = $id_picture
 				ORDER BY c.dateCreation DESC
+				LIMIT $limit OFFSET $offset
 			");
 			$statement->execute();
 			return $statement->fetchAll();
