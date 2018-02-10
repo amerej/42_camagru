@@ -4,7 +4,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/DB.class.php';
 
 class CommentModel {
 
-	public static function getComments($id_picture, $limit=2, $offset=0) {
+	public static function getComments($id_picture, $limit=10, $offset=0) {
 		try {
 			$statement = DB::getInstance()->prepare
 			("	SELECT c.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username FROM Comments c 

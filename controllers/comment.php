@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$message = "	<html>
 							<body>
 								<div>
-									<img src=\"http://localhost:8888/camagru/$filename\">
+									<img src=\"http://localhost:8080/camagru/$filename\">
 									<p>$content</p>
 								</div>
 							</body>
@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $picture_id = Security::filterInput($_GET['id']);
 $offset = isset($_GET['offset']) ? Security::filterInput($_GET['offset']) : 0;
-$limit = isset($_GET['limit']) ? Security::filterInput($_GET['limit']) : 5;
+$limit = isset($_GET['limit']) ? Security::filterInput($_GET['limit']) : 10;
 $comments = CommentModel::getComments($picture_id, $limit, $offset);
 
 ?>

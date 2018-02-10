@@ -4,12 +4,13 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/DB.class.php';
 
 class PictureModel {
 	
-	public static function getPictures() {
+	public static function getPictures($limit=20, $offset=0) {
 		try {
 			$statement = DB::getInstance()->prepare
 			("	SELECT p.*, DATE_FORMAT(dateCreation, '%d/%m/%Y') AS date, u.username FROM mydb.Pictures p
 				INNER JOIN Users u ON p.idUser = u.idUser
 				ORDER BY p.dateCreation DESC
+				LIMIT $limit OFFSET $offset
 			");
 			$statement->execute();
 			return $statement->fetchAll();

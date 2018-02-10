@@ -78,7 +78,7 @@
 <script>
 
 window.ajaxready = true
-let offset = 5
+let offset = 10
 
 document.getElementById("submit_like").addEventListener("click", function() {
 
@@ -130,10 +130,6 @@ document.addEventListener("scroll", function (event) {
 	var scrollTop = document.documentElement.scrollTop
 	var bodyHeight = document.body.clientHeight - windowHeight
 	var scrollPercentage = (scrollTop / bodyHeight)
-	// console.log("scrollTop: ", scrollTop)
-	// console.log("windowHeight: ", windowHeight)
-	// console.log("bodyHeight: ", document.body.clientHeight)
-	// console.log("scrollPercentage: ", scrollPercentage)
 	
 	if (window.ajaxready == false) return
 	if(scrollPercentage > 0.8) {
@@ -144,7 +140,7 @@ document.addEventListener("scroll", function (event) {
 			if (oReq.status == 200) {
 				await sleep(1000)
 				if (oReq.responseText != '') {
-					offset += 5
+					offset += 10
 					comments.innerHTML += oReq.responseText
 					window.ajaxready = true
 				}
@@ -157,7 +153,7 @@ document.addEventListener("scroll", function (event) {
 
 
 function sleep(ms) {
-	return new Promise(resolve => setTimeout(resolve, ms));
+	return new Promise(resolve => setTimeout(resolve, ms))
 }
 
 </script>

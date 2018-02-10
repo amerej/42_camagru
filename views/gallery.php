@@ -15,63 +15,50 @@
 		<?php include('controllers/navbar.php'); ?>
 		
 		<section class="gallery">
-			<div class="container has-text-centered">
-				<?php for ($i = 0; $i < count($pictures); $i++): ?>
-				<?php if ($i % 4 == 0) : ?>
-				<?php if ($i != 0) : ?>
-				</div>
-				<?php endif; ?>
-				<div class="columns is-centered">
-					<div class="column">
-						<div class="card">
-							<div class="card-image">
-								<figure class="image is-4by3">
-									<?php if (isset($username) && isset($id_user)) : ?>
-									<a href="picture.php?id=<?php echo $pictures[$i]['idPicture']; ?>">
-										<img class="" src="<?php echo $pictures[$i]['filename']; ?>"/>
-									</a>
-									<?php else: ?>
-									<img class="" src="<?php echo $pictures[$i]['filename']; ?>"/>
-									<?php endif; ?>
-								</figure>
-							</div>
-							<div class="card-content">
-								<div class="media">
-									<div class="media-content">
-										<p class="title is-5"><?php echo $pictures[$i]['username'] ?></p>
-										<p class="subtitle is-6"><?php echo $pictures[$i]['date'] ?></p>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				<?php else : ?>
-				<div class="column">
-					<div class="card">
-						<div class="card-image">
-							<figure class="image is-4by3">
-								<?php if (isset($username) && isset($id_user)) : ?>
-								<a href="picture.php?id=<?php echo $pictures[$i]['idPicture']; ?>">
-									<img class="" src="<?php echo $pictures[$i]['filename']; ?>"/>
-								</a>
-								<?php else: ?>
-								<img class="" src="<?php echo $pictures[$i]['filename']; ?>"/>
-								<?php endif; ?>
-							</figure>
-						</div>
-						<div class="card-content">
-							<div class="media">
-								<div class="media-content">
-									<p class="title is-5"><?php echo $pictures[$i]['username'] ?></p>
-									<p class="subtitle is-6"><?php echo $pictures[$i]['date'] ?></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<?php endif; ?>
-				<?php endfor; ?>
+			<div class="container has-text-centered" id="gallery">
+                <?php include('gallery_snap.php'); ?>
 			</div>
 		</section>
 	</body>
 </html>
+
+<script>
+
+window.ajaxready = true
+let offset = 20
+
+// Infinite scroll comments
+let pictures = document.querySelector('#gallery')
+let windowHeight = window.innerHeight
+
+document.addEventListener("scroll", function (event) {
+	var scrollTop = document.documentElement.scrollTop
+	var bodyHeight = document.body.clientHeight - windowHeight
+	var scrollPercentage = (scrollTop / bodyHeight)
+	
+	if (window.ajaxready == false) return
+	if(scrollPercentage > 0.8) {
+		// Load content
+		window.ajaxready = false
+		var oReq = new XMLHttpRequest()
+		oReq.onload = async function(oEvent) {
+			if (oReq.status == 200) {
+				await sleep(1000)
+				if (oReq.responseText != '') {
+					offset += 20
+					pictures.innerHTML += oReq.responseText
+					window.ajaxready = true
+				}
+			}
+		}
+		oReq.open("GET", "gallery_snap.php?offset=" + offset, true)
+		oReq.send()
+	}
+})
+
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+</script>
