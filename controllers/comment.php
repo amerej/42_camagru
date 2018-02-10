@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 $picture_id = Security::filterInput($_GET['id']);
 $offset = isset($_GET['offset']) ? Security::filterInput($_GET['offset']) : 0;
-$limit = isset($_GET['limit']) ? Security::filterInput($_GET['limit']) : 2;
+$limit = isset($_GET['limit']) ? Security::filterInput($_GET['limit']) : 5;
 $comments = CommentModel::getComments($picture_id, $limit, $offset);
 
 ?>

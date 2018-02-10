@@ -20,12 +20,31 @@
 					<div class="column is-two-thirds">
 						<div class="column">
 							<div class="card">
-								<div class="card-image"><figure class="image is-4by3"><img class="" src="<?php echo $picture['filename']; ?>"/></figure></div>
+								<div class="card-image">
+									<figure class="image is-4by3">
+										<img class="" src="<?php echo $picture['filename']; ?>"/>
+									</figure>
+								</div>
 								<div class="card-content">
 									<div class="media">
-										<div class="media-content"><p><strong><?php echo $picture['username'] ?></strong> <small><?php echo $picture['date'] ?></small></p></div>
-										<div class="media-right"><?php include('like.php'); ?></div>
-										<div class="media-right"><figure class="image is-32x32"><img id="submit_like" src="resources/img/icons/heart.png" alt="Like"></figure></div>
+										<div class="media-content">
+											<p>
+												<strong>
+													<?php echo $picture['username'] ?>
+												</strong>
+												<small>
+													<?php echo $picture['date'] ?>
+												</small>
+											</p>
+										</div>
+										<div class="media-right">
+											<?php include('like.php'); ?>
+										</div>
+										<div class="media-right">
+											<figure class="image is-32x32">
+												<img id="submit_like" src="resources/img/icons/heart.png" alt="Like">
+											</figure>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -34,8 +53,14 @@
 							<div class="card">
 								<div class="card-content">
 									<div class="media">
-										<div class="media-content"><textarea class="textarea" id="content" name="content" placeholder="Enter your comment here..." rows="1"></textarea></div>
-										<div class="media-right"><figure class="image is-32x32"><img id="submit" src="resources/img/icons/send.png" alt="Send"></figure></div>
+										<div class="media-content">
+											<textarea class="textarea" id="content" name="content" placeholder="Enter your comment here..." rows="1"></textarea>
+										</div>
+										<div class="media-right">
+											<figure class="image is-32x32">
+												<img id="submit" src="resources/img/icons/send.png" alt="Send">
+											</figure>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -53,7 +78,7 @@
 <script>
 
 window.ajaxready = true
-var offset = 2
+let offset = 5
 
 document.getElementById("submit_like").addEventListener("click", function() {
 
@@ -88,36 +113,38 @@ document.getElementById("submit").addEventListener("click", function() {
 		if (oReq.status == 200) {
 			comments.innerHTML = oReq.responseText
 			content.value = ""
-			window.ajaxready = true
-			//console.log(offset)
-			//offset++
+			// window.ajaxready = true
 		}
 	}
-	console.log(offset)
+	offset += 1
+	window.ajaxready = true
 	oReq.open("POST", "comment.php?id=<?php echo $picture_id ?>&limit=" + offset, true);
 	oReq.send(formData)
 }, false)
 
 // Infinite scroll comments
-
+let comments = document.querySelector('#comments')
+let windowHeight = window.innerHeight
 
 document.addEventListener("scroll", function (event) {
 	var scrollTop = document.documentElement.scrollTop
-	var windowHeight = window.innerHeight
 	var bodyHeight = document.body.clientHeight - windowHeight
 	var scrollPercentage = (scrollTop / bodyHeight)
-	var comments = document.querySelector('#comments')
+	// console.log("scrollTop: ", scrollTop)
+	// console.log("windowHeight: ", windowHeight)
+	// console.log("bodyHeight: ", document.body.clientHeight)
+	// console.log("scrollPercentage: ", scrollPercentage)
 	
 	if (window.ajaxready == false) return
-
-	if(scrollPercentage > 0.9) {
+	if(scrollPercentage > 0.8) {
 		// Load content
 		window.ajaxready = false
 		var oReq = new XMLHttpRequest()
-		oReq.onload = function(oEvent) {
+		oReq.onload = async function(oEvent) {
 			if (oReq.status == 200) {
+				await sleep(1000)
 				if (oReq.responseText != '') {
-					offset += 2
+					offset += 5
 					comments.innerHTML += oReq.responseText
 					window.ajaxready = true
 				}
@@ -127,5 +154,10 @@ document.addEventListener("scroll", function (event) {
 		oReq.send()
 	}
 })
+
+
+function sleep(ms) {
+	return new Promise(resolve => setTimeout(resolve, ms));
+}
 
 </script>
