@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		$message = "	<html>
 							<body>
 								<div>
-									<img src=\"http://localhost:8080/camagru/$filename\">
+									<img src=\"http://localhost:8888/camagru/$filename\">
 									<p>$content</p>
 								</div>
 							</body>

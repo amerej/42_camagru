@@ -1,7 +1,8 @@
 <?php
 
-if (!isset($_SESSION))
-    session_start();
+if (!isset($_SESSION)) {
+	session_start();
+}
 
 $id_user = $_SESSION['user']['id'];
 $username = $_SESSION['user']['username'];
@@ -20,13 +21,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	$filepath = "pictures" . "/" . $username . "/";
 	$filename = $filepath . uniqid() . '.png';
 	
-	if (!is_dir("../" . $filepath))
-		mkdir("../" . $filepath, 0777, true);
+	if (!is_dir($filepath))
+		mkdir($filepath, 0777, true);
 	
-	file_put_contents('../' . $filename, file_get_contents("data://" . $image));
+	file_put_contents($filename, file_get_contents("data://" . $image));
 	
 	// Merge image and filter
-	$dest = imagecreatefrompng('../' . $filename);
+	$dest = imagecreatefrompng($filename);
 	
 	foreach ($filters as $filter) {
 		$src = imagecreatefrompng($filter);
@@ -34,13 +35,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 		imagedestroy($src);
 	}
 	
-	imagepng($dest, '../' . $filename);
+	imagepng($dest, $filename);
 	imagedestroy($dest);
 
 	PictureModel::postPicture($id_user, $filename);
 }
-else {
-	$pictures = PictureModel::getPicturesByUser($id_user);
-}
+
+$pictures = PictureModel::getPicturesByUser($id_user);
 
 ?>

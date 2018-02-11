@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 								<title>Confirmation Camagru</title>
 							</head>
 							<body>
-								<p><a href=\"http://localhost:8080/camagru/login.php?email=$email&token=$token\">Confirm Inscription</a></p>
+								<p><a href=\"http://localhost:8888/camagru/login.php?email=$email&token=$token\">Confirm Inscription</a></p>
 							</body>
 						</html>
 					";

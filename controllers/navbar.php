@@ -8,6 +8,4 @@ if (isset($_SESSION['user']['username']) && isset($_SESSION['user']['id'])) {
 	$id_user = $_SESSION['user']['id'];
 }
 
-include('views/navbar.php');
-
 ?>
