@@ -14,8 +14,14 @@ if (!isset($_GET['id'])) {
 require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/Security.class.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/PictureModel.php';
 
-
 $picture_id = Security::filterInput($_GET['id']);
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+	
+	PictureModel::deletePicture($picture_id);
+}
+
 $picture = PictureModel::getPicture($picture_id);
+$user_id = $_SESSION['user']['id']
 
 ?>

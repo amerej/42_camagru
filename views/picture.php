@@ -45,6 +45,13 @@
 												<img id="submit_like" src="resources/img/icons/heart.png" alt="Like">
 											</figure>
 										</div>
+										<?php if (isset($user_id) && $user_id == $picture['idUser']) : ?>
+											<div class="media-right">
+												<figure class="image is-32x32">
+													<img onclick="deleteImg();" src="resources/img/icons/rubbish.png" alt="Delete">
+												</figure>
+											</div>
+										<?php endif; ?>
 									</div>
 								</div>
 							</div>
@@ -79,6 +86,18 @@
 
 window.ajaxready = true
 let offset = 10
+
+function deleteImg() {
+
+	var oReq = new XMLHttpRequest();
+	oReq.onload = function(oEvent) {
+		if (oReq.status == 200) {
+			location.href = 'gallery.php'
+		}
+	}
+	oReq.open("POST", "picture.php?id=<?php echo $picture_id ?>", true);
+	oReq.send()
+}
 
 document.getElementById("submit_like").addEventListener("click", function() {
 
