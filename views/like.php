@@ -1,1 +1,0 @@
-<strong id="likes"><?php echo $likes ?></strong>
