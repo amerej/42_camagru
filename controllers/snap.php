@@ -14,10 +14,9 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/PictureModel.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (!isset($_POST['image']) && !isset($_POST['filter']))
-		exit(header('Location: ../home.php?error=nodata'));
+		exit(header('Location: index.php?error=nodata'));
 	$image = $_POST['image'];
 	$filters = json_decode($_POST['filters']);
-	
 	$filepath = "pictures" . "/" . $username . "/";
 	$filename = $filepath . uniqid() . '.png';
 	

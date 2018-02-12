@@ -15,7 +15,8 @@ if (empty($_FILES['file']))
 if ($_FILES['file']['error'] !== 0)
 	exit(header('Location: index.php?error=errfile'));
 
-$filepath = "pictures" . "/" . $username . "/";
+$filepath = "pictures" . "/" . $username . "/tmp/";
+
 $fileInfo = new SplFileInfo($_FILES['file']['name']);
 $fileExtension = $fileInfo->getExtension();
 $filename = $filepath . uniqid() . "." . $fileExtension;
@@ -23,15 +24,15 @@ $filename = $filepath . uniqid() . "." . $fileExtension;
 if (!($fileExtension === "jpg" || $fileExtension === "png" || $fileExtension === "gif"))
 	exit(header('Location: home.php?error=badfile'));
 
-if (!is_dir("../" . $filepath)) {
-	mkdir("../" . $filepath, 0777, true);
+if (!is_dir($filepath)) {
+	mkdir($filepath, 0777, true);
 }
 
-move_uploaded_file($_FILES['file']['tmp_name'], "../" . $filename);
+move_uploaded_file($_FILES['file']['tmp_name'], $filename);
 
 // Save new image
-require $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/PictureModel.php';
+// require $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/PictureModel.php';
 
-PictureModel::postPicture($id_user, $filename);
+// PictureModel::postPicture($id_user, $filename);
 
 ?>

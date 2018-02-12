@@ -15,6 +15,11 @@ var filters = []
 function select(elem) {
 	var container = document.getElementById("snapshot");
 	var elements = container.getElementsByClassName("overlay");
+	var snap = document.querySelector("#snap")
+
+	if (snap.value == 'no_media') {
+		return
+	}
 
 	while (elements[0]) {
 		elements[0].parentNode.removeChild(elements[0]);

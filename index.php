@@ -30,12 +30,13 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/index.php';
 						<div class="field">
 							<div class="video" id="snapshot">
 								<video id="video" autoplay="true"></video>
+								<canvas id="canvas" width="640" height="480"></canvas>
 							</div>
-							<canvas id="canvas" width="640" height="480"></canvas>
 							<?php include('filters.php'); ?>
 							<div class="field takeSnap">
-								<input id="snap" type="image" src="resources/img/icons/tequila.png" alt="Submit" width="48">
+								<input id="snap" type="image" src="resources/img/icons/tequila.png" alt="Submit" width="48" value="camera_on">
 							</div>
+							<div class="field" id="no_camera"></div>
 						</div>
 					</div>
 				</div>
@@ -48,16 +49,30 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/index.php';
 
 let video = document.querySelector("#video")
 let canvas = document.querySelector('#canvas')
+let file_upload = document.querySelector('#file_upload')
+let snapshot = document.querySelector('#snapshot')
 let user_snap = document.querySelector('#usersSnap')
 let context = canvas.getContext('2d')
 
+var flag = false
+
 document.getElementById("snap").addEventListener("click", function() {
-	context.drawImage(video, 0, 0, 640, 480)
-	var image = new Image()
-	image.src = canvas.toDataURL("image/png")
+
+	var snap = document.querySelector("#snap")
+
+	if (filters.length == 0 || snap.value == 'no_media')
+		return
+	
+	if (snap.value == 'camera_off') {
+		var image = document.querySelector('#my_img')
+	}
+	else {
+		context.drawImage(video, 0, 0, 640, 480)
+		var image = new Image()
+		image.src = canvas.toDataURL("image/png")
+	}
 
 	var formData = new FormData()
-
 	formData.append("image", image.src)
 	formData.append("filters", JSON.stringify(filters))
 	
@@ -84,10 +99,33 @@ if (navigator.getUserMedia) {
 }
 
 function handleVideo(stream) {
-	video.src = window.URL.createObjectURL(stream);
+	video.src = window.URL.createObjectURL(stream)
 }
 
 function videoError(e) {
-	console.log("bite")
+	snapshot.innerHTML = '<img src=\'resources/img/icons/lock.png\'>'
+	no_camera.innerHTML = '<input id=\'file\' type=\'file\' multiple />' +
+		'<a id=\'file_upload\' onclick=\'fileUpload()\' class=\'button is-white\'>Upload</a>'
+	snap.setAttribute('value', 'no_media')
 }
+
+function fileUpload () {
+	var input = document.querySelector('#file')
+
+	if (input.files && input.files[0]) {
+		if (!input.files[0].name.match(/.(png)$/i)) {
+			return
+		}
+		var reader = new FileReader()
+
+		reader.onload = function (e) {
+			snapshot.innerHTML = '<img id=\'my_img\' src=\'#\' alt="your image" />'
+			var myImg = document.querySelector('#my_img')
+			myImg.setAttribute('src', e.target.result)
+		}
+		reader.readAsDataURL(input.files[0])
+		snap.setAttribute('value', 'camera_off')
+	}
+}
+
 </script>

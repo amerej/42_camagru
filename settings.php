@@ -33,7 +33,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/settings.php';
 							</div>
 							<div class="column">
 								<p class="control has-icons-left">
-									<input class="input" type="email" name="email" value="" placeholder="Enter new email" autocomplete="on">
+									<input class="input" type="email" name="email" value="" placeholder="Enter new email" autocomplete="email">
 									<span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
 								</p>
 								<p class="help" id="infos_email"></p>
@@ -69,7 +69,7 @@ form.addEventListener('submit', function(e) {
 	infos_email = document.getElementById("infos_email"),
 	oData = new FormData(document.forms.namedItem("settings"))
 
-	var oReq = new XMLHttpRequest();
+	var oReq = new XMLHttpRequest()
 	oReq.onload = function(oEvent) {
 		if (oReq.status == 200) {
 			var data = JSON.parse(this.responseText)
@@ -124,10 +124,10 @@ form.addEventListener('submit', function(e) {
 				infos_notifs.style.color = "#42f4a1";
 			}
 		} else {
-			console.log("Error " + oReq.status + " occurred uploading your file.")
+			console.log("Error " + oReq.status)
 		}
 	}
-	oReq.open("POST", "settings.php", true);
+	oReq.open("POST", "controllers/settings.php", true);
 	oReq.send(oData)
 	e.preventDefault()
 }, false)

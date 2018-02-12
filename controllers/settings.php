@@ -9,14 +9,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/Security.class.php';
 require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/UserModel.php';
 
 if (!(isset($_SESSION['user']['username']) && isset($_SESSION['user']['id']))) {
-	exit(header('Location: index.php?error=forbidden'));
+	exit(header('Location: ../index.php?error=forbidden'));
 }
 
 $data = [];
 
 $notifs_state = UserModel::getNotificationsState($_SESSION['user']['id']);
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
 
 	if (!empty($_POST['username'])) {

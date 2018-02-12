@@ -16,8 +16,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/navbar.php';
 	<div class="navbar-menu" id="navMenu">
 		<div class="navbar-end">
 			<?php if (isset($username)) : ?>
-				<a class="navbar-item" href="index.php">Take Snap</a>
-				<a class="navbar-item">Import Picture</a>
+				<a class="navbar-item" href="index.php">Snap</a>
 				<a class="navbar-item" href="gallery.php">Gallery</a>
 				<div class="navbar-item has-dropdown is-hoverable">
 					<a class="navbar-link" id="nav_username"><?php echo $username ?></a>

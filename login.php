@@ -48,7 +48,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/login.php';
 									<input class="input" type="password" name="password" placeholder="Enter password" autocomplete="on" required>
 									<span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
 								</p>
-								<p class="help">Forgot password ?<a href="#"> Click here</a></p>
+								<p class="help">Forgot password ?<a href="forgot_password.php"> Click here</a></p>
 							</div>
 							<div class="control field has-text-centered">
 								<p><button class="button is-white is-medium" type="submit">Login</button></p>
