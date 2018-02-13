@@ -10,12 +10,13 @@ $username = $_SESSION['user']['username'];
 if (!(isset($username) && isset($id_user)))
 	exit(header('Location: index.php?error=forbidden'));
 
-require $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/PictureModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/PictureModel.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/Security.class.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (!isset($_POST['image']) && !isset($_POST['filter']))
 		exit(header('Location: index.php?error=nodata'));
-	$image = $_POST['image'];
+	$image = Security::filterInput($_POST['image']);
 	$filters = json_decode($_POST['filters']);
 	$filepath = "pictures" . "/" . $username . "/";
 	$filename = $filepath . uniqid() . '.png';

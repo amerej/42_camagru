@@ -48,6 +48,8 @@ form.addEventListener('submit', function(e) {
 	infos_password = document.getElementById("infos_password"),
 	updated_password = document.getElementById("updated_password"),
 	oData = new FormData(document.forms.namedItem("renew_password"))
+	oData.append('email', '<?php echo $_GET['email']; ?>');
+	oData.append('token', '<?php echo $_GET['token']; ?>');
 
 	var oReq = new XMLHttpRequest()
 	oReq.onload = function(oEvent) {
@@ -62,8 +64,7 @@ form.addEventListener('submit', function(e) {
 				updated_password.innerHTML = "You're so ugly"
 				infos_password.innerHTML = ''
 			} else if (data['updated_password']) {
-				updated_password.innerHTML = "Password successfully updated !"
-				infos_password.innerHTML = ''
+				window.location = "login.php";
 			} else {
 				infos_password.innerHTML = ""
 				updated_password.innerHTML = ""

@@ -29,7 +29,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/signin.php';
 							</div>
 							<div class="field">
 								<p class="control has-icons-left">
-									<input class="input" type="email" name="email" value="<?php echo $email; ?>" placeholder="Enter Email" autocomplete="on" required>
+									<input class="input" type="email" name="email" value="<?php echo $email; ?>" placeholder="Enter Email" autocomplete="email" required>
 									<span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
 								</p>
 								<p class="help">Enter valid email</p>

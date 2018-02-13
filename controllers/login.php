@@ -4,7 +4,6 @@ if (!isset($_SESSION))
 	session_start();
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/Security.class.php';
-
 require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/models/UserModel.php';
 
 $account_email = $account_username = '';
