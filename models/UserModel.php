@@ -178,6 +178,21 @@ class UserModel {
 		}
 	}
 
+	public static function updatePasswordEmail($email, $newPassword) {
+		try {
+			$statement = DB::getInstance()->prepare
+			("	UPDATE Users u
+				SET u.password = :password
+				WHERE u.email = :email
+			");
+			$statement->bindParam(':password', $newPassword);
+			$statement->bindParam(':email', $email);
+			$statement->execute();
+		} catch(PDOException $e) {
+			echo $e->getMessage(); 
+		}
+	}
+
 	public static function updateNotifications($userId, $state) {
 		try {
 			$statement = DB::getInstance()->prepare

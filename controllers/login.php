@@ -45,14 +45,13 @@ if (isset($_GET['email']) && isset($_GET['token'])) {
 		$account_validate = 'Your account is validate... Good job!';
 		unset($_SESSION['account']);
 		$account_email = $account_username = '';
-		echo 	'<script type="text/javascript">',
-				'var clean_uri = location.protocol + "//" + location.host + location.pathname;',
-				'window.history.replaceState({}, document.title, clean_uri);',
-				'</script>';
-
 	} else {
 		$account_validate = 'You\'re entering a world of pain!';
 	}
+	echo 	'<script type="text/javascript">',
+			'var clean_uri = location.protocol + "//" + location.host + location.pathname;',
+			'window.history.replaceState({}, document.title, clean_uri);',
+			'</script>';
 
 }
 if (isset($_SESSION['account']['email']) && isset($_SESSION['account']['username'])) {
