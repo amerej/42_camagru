@@ -18,7 +18,7 @@ $picture_id = Security::filterInput($_GET['id']);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	
-	PictureModel::deletePicture($picture_id);
+	PictureModel::deletePicture($_SESSION['user']['id'], $picture_id);
 }
 
 $picture = PictureModel::getPicture($picture_id);

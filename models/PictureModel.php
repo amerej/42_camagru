@@ -36,13 +36,14 @@ class PictureModel {
 		}
 	}
 
-	public static function deletePicture($picture_id) {
+	public static function deletePicture($user_id, $picture_id) {
 		try {
 			$statement = DB::getInstance()->prepare
 			("	DELETE FROM Pictures
-				WHERE idPicture = :idPicture
+				WHERE idPicture = :idPicture AND idUser = :idUser
 			");
 			$statement->bindParam('idPicture', $picture_id);
+			$statement->bindParam('idUser', $user_id);
 			$statement->execute();
 
 		} catch(PDOException $e) {

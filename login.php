@@ -49,6 +49,10 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/login.php';
 							<div class="control field has-text-centered">
 								<p><button class="button is-white is-medium" type="submit">Login</button></p>
 							</div>
+							<div class="control field has-text-centered">
+								<p><?php echo $username_error ?></p>
+								<p><?php echo $password_error ?></p>
+							</div>
 						</form>
 					</div>
 				</div>
