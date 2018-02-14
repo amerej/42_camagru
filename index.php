@@ -10,10 +10,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/index.php';
 		<meta charset="UTF-8" lang="en">
 		<title>Camagru - Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
-		<link rel="stylesheet" type="text/css"href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
+		<link rel="stylesheet" type="text/css" href="vendors/css/bulma-0.6.2/css/bulma.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/test.css">
-		<script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 		<script type="text/javascript" src="resources/js/topnav.js"></script>
 	</head>
 	

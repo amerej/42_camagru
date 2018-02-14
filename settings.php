@@ -8,10 +8,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/settings.php';
 		<meta charset="UTF-8" lang="en">
 		<title>Camagru - Settings</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
-		<link rel="stylesheet" type="text/css"href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
+		<link rel="stylesheet" type="text/css" href="vendors/css/bulma-0.6.2/css/bulma.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/test.css">
-		<script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 		<script type="text/javascript" src="resources/js/topnav.js"></script>
 	</head>
 
@@ -25,23 +23,20 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/settings.php';
 					<div class="columns is-centered">
 						<form class="column is-half" enctype="multipart/form-data" method="POST" name="settings">
 							<div class="column">
-								<p class="control has-icons-left">
+								<p class="control">
 									<input class="input" type="text" name="username" value="" placeholder="Enter new username" autocomplete="on" autofocus>
-									<span class="icon is-small is-left"><i class="fas fa-user"></i></span>
 								</p>
 								<p class="help" id="infos_username"></p>
 							</div>
 							<div class="column">
-								<p class="control has-icons-left">
+								<p class="control">
 									<input class="input" type="email" name="email" value="" placeholder="Enter new email" autocomplete="email">
-									<span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
 								</p>
 								<p class="help" id="infos_email"></p>
 							</div>
 							<div class="column">
-								<p class="control has-icons-left">
+								<p class="control">
 									<input class="input" type="password" name="password" placeholder="Enter new password" autocomplete="on">
-									<span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
 								</p>
 								<p class="help" id="infos_password"></p>
 							</div>

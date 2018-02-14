@@ -8,10 +8,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/forgot_password.p
 		<meta charset="UTF-8" lang="en">
 		<title>Camagru - Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
-		<link rel="stylesheet" type="text/css"href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
+		<link rel="stylesheet" type="text/css" href="vendors/css/bulma-0.6.2/css/bulma.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/test.css">
-		<script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 	</head>
 
 	<body>
@@ -25,9 +23,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/forgot_password.p
 								<p id="email_sent"></p>
 							</div>
 							<div class="field">
-								<p class="control has-icons-left">
+								<p class="control">
 									<input class="input" type="email" name="email" placeholder="Enter email" autocomplete="email" required>
-									<span class="icon is-small is-left"><i class="fas fa-user"></i></span>
 								</p>
 								<p class="help" id="infos_email"></p>
 							</div>

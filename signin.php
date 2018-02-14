@@ -8,10 +8,8 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/signin.php';
 		<meta charset="UTF-8" lang="en">
 		<title>Camagru - Login</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-		<link rel="stylesheet" type="text/css" href="vendors/css/normalize.css">
-		<link rel="stylesheet" type="text/css"href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.css">
+		<link rel="stylesheet" type="text/css" href="vendors/css/bulma-0.6.2/css/bulma.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/test.css">
-		<script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
 	</head>
 
 	<body>
@@ -21,23 +19,20 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/signin.php';
 					<div class="columns is-centered">
 						<form class="column is-half" method="POST" action="signin.php">
 							<div class="field">
-								<p class="control has-icons-left">
+								<p class="control">
 									<input class="input" type="text" name="username" value="<?php echo $username; ?>" placeholder="Enter username" autocomplete="on" required>
-									<span class="icon is-small is-left"><i class="fas fa-user"></i></span>
 								</p>
 								<p class="help">Already username ? <a href="login.php">login</a></p>
 							</div>
 							<div class="field">
-								<p class="control has-icons-left">
+								<p class="control">
 									<input class="input" type="email" name="email" value="<?php echo $email; ?>" placeholder="Enter Email" autocomplete="email" required>
-									<span class="icon is-small is-left"><i class="fas fa-envelope"></i></span>
 								</p>
 								<p class="help">Enter valid email</p>
 							</div>
 							<div class="field">
-								<p class="control has-icons-left">
+								<p class="control">
 									<input class="input" type="password" name="password" placeholder="Enter password" autocomplete="on" required>
-									<span class="icon is-small is-left"><i class="fas fa-lock"></i></span>
 								</p>
 								<p class="help">8 characters, numbers and letters</p>
 							</div>
