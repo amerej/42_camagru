@@ -6,7 +6,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/picture.php';
 <html>
 	<head>
 		<meta charset="UTF-8" lang="en">
-		<title>Camagru - Login</title>
+		<title>Camagru - Snaps</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="vendors/css/bulma-0.6.2/css/bulma.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/test.css">
@@ -55,7 +55,7 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/picture.php';
 											</div>
 											<div class="media-right">
 											<a 
-  												href="https://twitter.com/intent/tweet?text=http%3A%2F%2Flocalhost%3A8888%2Fcamagru%2F<?php echo $filename ?>">
+  												href="https://twitter.com/intent/tweet?text=http%3A%2F%2Flocalhost%3A8080%2Fcamagru%2F<?php echo $filename; ?>">
 													Tweet</a>
 											</div>
 										<?php endif; ?>

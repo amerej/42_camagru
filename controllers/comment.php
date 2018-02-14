@@ -18,21 +18,23 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/classes/Security.class.php';
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	if (!(isset($_POST['content']) && isset($_POST['user_id']) && isset($_POST['picture_id'])))
 		exit(header('Location: index.php?error=nodata'));
+	$username = $_SESSION['user']['username'];
 	$user_id = Security::filterInput($_POST['user_id']);
 	$picture_id = Security::filterInput($_POST['picture_id']);
 	$content = Security::filterInput($_POST['content']);
-	$is_notifications_enabled = UserModel::getNotificationsState($user_id);
+	$email = PictureModel::getEmailByPicture($picture_id);
+	$user_email = UserModel::getUserByEmail($email);
+	$is_notifications_enabled = UserModel::getNotificationsState($user_email['idUser']);
 	if ($is_notifications_enabled) {
 		// Send notifications mail
-		$email = PictureModel::getEmailByPicture($picture_id);
 		$picture = PictureModel::getPicture($picture_id);
 		$filename = $picture['filename'];
 		$subject = "New notification camagru";
 		$message = "	<html>
 							<body>
 								<div>
-									<img src=\"http://localhost:8888/camagru/$filename\">
-									<p>$content</p>
+									<img src=\"http://localhost:8080/camagru/$filename\">
+									<p>$content by $username</p>
 								</div>
 							</body>
 						</html>

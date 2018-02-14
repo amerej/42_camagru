@@ -6,7 +6,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/forgot_password.p
 <html>
 	<head>
 		<meta charset="UTF-8" lang="en">
-		<title>Camagru - Login</title>
+		<title>Camagru - Forgot pass</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 		<link rel="stylesheet" type="text/css" href="vendors/css/bulma-0.6.2/css/bulma.css">
 		<link rel="stylesheet" type="text/css" href="resources/css/test.css">

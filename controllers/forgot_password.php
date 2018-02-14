@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST") {
 								<title>Renew password</title>
 							</head>
 							<body>
-								<p><a href=\"http://localhost:8888/camagru/renew_password.php?email=$email&token=$token\">Renew password</a></p>
+								<p><a href=\"http://localhost:8080/camagru/renew_password.php?email=$email&token=$token\">Renew password</a></p>
 							</body>
 						</html>
 					";
