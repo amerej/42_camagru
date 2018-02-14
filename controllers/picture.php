@@ -22,6 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 $picture = PictureModel::getPicture($picture_id);
+if (!$picture) {
+	exit(header('Location: gallery.php?error=notfound'));
+}
 $user_id = $_SESSION['user']['id']
 
 ?>

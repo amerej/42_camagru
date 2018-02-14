@@ -119,9 +119,12 @@ form.addEventListener('submit', function(e) {
 				infos_notifs.innerHTML = "Notifications successfuly enabled"
 				infos_notifs.style.color = "#42f4a1";
 			}
-			else {
+			else if (data['notifs_enabled'] == false) {
 				infos_notifs.innerHTML = "Notifications successfuly disabled"
 				infos_notifs.style.color = "#42f4a1";
+			}
+			else {
+				infos_notifs.innerHTML = ""
 			}
 		} else {
 			console.log("Error " + oReq.status)

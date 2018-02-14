@@ -57,11 +57,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 	}
 
 	if (!empty($_POST['switch_notifs'])) {
-		UserModel::updateNotifications($_SESSION['user']['id'], 1);
-		$data['notifs_enabled'] = true;
+		if ($notifs_state != 1) {
+			UserModel::updateNotifications($_SESSION['user']['id'], 1);
+			$data['notifs_enabled'] = true;
+		}
 	} else {
-		UserModel::updateNotifications($_SESSION['user']['id'], 0);
-		$data['notifs_enabled'] = false;
+		if ($notifs_state != 0) {
+			UserModel::updateNotifications($_SESSION['user']['id'], 0);
+			$data['notifs_enabled'] = false;
+		}
 	}
 
 	echo json_encode($data);
