@@ -53,6 +53,11 @@ require $_SERVER['DOCUMENT_ROOT'] . '/camagru/controllers/picture.php';
 													<img onclick="deleteImg();" src="resources/img/icons/rubbish.png" alt="Delete">
 												</figure>
 											</div>
+											<div class="media-right">
+											<a 
+  												href="https://twitter.com/intent/tweet?text=http%3A%2F%2Flocalhost%3A8888%2Fcamagru%2F<?php echo $filename ?>">
+													Tweet</a>
+											</div>
 										<?php endif; ?>
 									</div>
 								</div>

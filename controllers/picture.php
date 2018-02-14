@@ -25,6 +25,8 @@ $picture = PictureModel::getPicture($picture_id);
 if (!$picture) {
 	exit(header('Location: gallery.php?error=notfound'));
 }
+
+$filename = urlencode($picture['filename']);
 $user_id = $_SESSION['user']['id']
 
 ?>
